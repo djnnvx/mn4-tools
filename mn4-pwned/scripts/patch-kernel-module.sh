@@ -13,7 +13,7 @@ K_MODULES_OUR="$K_MODULES/usb_f_serial_patched.ko"
 
 # ensure we are on bookworm otherwise we can only retrieve sources for linux 5.1 max
 sed -i "s/bullseye/bookworm/g" /etc/apt/sources.list
-sed -i "s/bullseye/bookworm/g" /etc/apt/sources.d/rpi.list
+sed -i "s/bullseye/bookworm/g" /etc/apt/sources.list.d/raspi.list
 
 if [ ! -f "$K_MODULES_OUR" ]; then
     K_SOURCE=$(find /usr/src/ -maxdepth 1 -name "linux-source-*.tar.*")
@@ -21,8 +21,9 @@ if [ ! -f "$K_MODULES_OUR" ]; then
         echo "getting kernel source..."
 	apt-get update
 	apt-get -y --fix-missing install build-essential linux-source-6.1 linux-headers
-        K_SOURCE=$(find /usr/src/ -maxdepth 1 -name "linux-source-*.tar.*")
     fi
+
+    K_SOURCE=$(find /usr/src/ -maxdepth 1 -name "linux-source-*.tar.*")
 
     if [ ! -d linux-source ]; then
         echo "extracting kernel source..."
