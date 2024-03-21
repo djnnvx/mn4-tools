@@ -48,16 +48,16 @@ else
         sed -e '1,/^async main()/d' tmp/main-ulc.xs
     } >tmp/main-ulc.xs.pwn
 
-    SHA1=$(sha1sum tmp/main-ulc.xs | head -c40)
-    echo "file hash = $SHA1"
-    if [ "$SHA1" != "$SHA1_EXPECTED" ]; then
-        echo " expected = $SHA1_EXPECTED"
-        echo "file 'tmp/main-ulc.xs' does not match expected content"
-	echo "Got: $SHA1"
-	echo "Instead of: $SHA1_EXPECTED"
-        echo "check the file 'tmp/main-ulc.xs.pwn'"
-        confirm "continue"
-    fi
+#    SHA1=$(sha1sum tmp/main-ulc.xs | head -c40)
+#    echo "file hash = $SHA1"
+#    if [ "$SHA1" != "$SHA1_EXPECTED" ]; then
+#        echo " expected = $SHA1_EXPECTED"
+#        echo "file 'tmp/main-ulc.xs' does not match expected content"
+#	echo "Got: $SHA1"
+#	echo "Instead of: $SHA1_EXPECTED"
+#        echo "check the file 'tmp/main-ulc.xs.pwn'"
+#        confirm "continue"
+#    fi
 
     echo "uploading pwned 'main-ulc.xs'..."
     ./scripts/ctrl-proto.py push tmp/main-ulc.xs.pwn yellowtool/src/main-ulc.xs

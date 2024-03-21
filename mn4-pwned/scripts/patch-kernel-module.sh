@@ -20,7 +20,7 @@ if [ ! -f "$K_MODULES_OUR" ]; then
     if [ -z "$K_SOURCE" ]; then
         echo "getting kernel source..."
 	apt-get update
-	apt-get upgrade -y
+	yes | apt-get upgrade -y
 	apt-get -y --fix-missing install build-essential linux-source-6.1 linux-headers
     fi
 
