@@ -53,6 +53,8 @@ else
     if [ "$SHA1" != "$SHA1_EXPECTED" ]; then
         echo " expected = $SHA1_EXPECTED"
         echo "file 'tmp/main-ulc.xs' does not match expected content"
+	echo "Got: $SHA1"
+	echo "Instead of: $SHA1_EXPECTED"
         echo "check the file 'tmp/main-ulc.xs.pwn'"
         confirm "continue"
     fi
