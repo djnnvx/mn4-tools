@@ -10,11 +10,16 @@ K_RELEASE=$(uname -r)
 K_MODULES="/lib/modules/$K_RELEASE"
 K_MODULES_OUR="$K_MODULES/usb_f_serial_patched.ko"
 
+
+# ensure we are on bookworm otherwise we can only retrieve sources for linux 5.1 max
+sed -i "s/bullseye/bookworm/g" /etc/apt/sources.list
+sed -i "s/bullseye/bookworm/g" /etc/apt/sources.d/rpi.list
+
 if [ ! -f "$K_MODULES_OUR" ]; then
     K_SOURCE=$(find /usr/src/ -maxdepth 1 -name "linux-source-*.tar.*")
     if [ -z "$K_SOURCE" ]; then
         echo "getting kernel source..."
-        apt-get -y install build-essential linux-source
+        apt-get -y --fix-missing install build-essential linux-source linux-headers
         K_SOURCE=$(find /usr/src/ -maxdepth 1 -name "linux-source-*.tar.*")
     fi
 
