@@ -41,8 +41,8 @@ if [ ! -f "$K_MODULES_OUR" ]; then
         cp "/usr/src/linux-headers-$K_RELEASE/Module.symvers" .
         [ -f .config ] || yes "" | make oldconfig || true
         make modules_prepare
-        make M=drivers/usb/gadget/function modules
-        # make drivers/usb/gadget/function/usb_f_serial.ko
+        # make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- --arch=armv6 drivers/usb/gadget/function/usb_f_serial.ko
+	make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- --arch=armv6 M=drivers/usb/gadget/function modules
         cp drivers/usb/gadget/function/usb_f_serial.ko "$K_MODULES_OUR"
     )
 fi
