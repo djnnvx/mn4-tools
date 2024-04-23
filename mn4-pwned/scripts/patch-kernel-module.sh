@@ -19,9 +19,9 @@ if [ ! -f "$K_MODULES_OUR" ]; then
     K_SOURCE=$(find /usr/src/ -maxdepth 1 -name "linux-source-*.tar.*")
     if [ -z "$K_SOURCE" ]; then
         echo "getting kernel source..."
-	apt-get update
-	yes | apt-get upgrade -y
-	apt-get -y --fix-missing install build-essential linux-source-6.1 linux-headers
+	apt update
+	apt upgrade -y
+	apt -y --fix-missing install build-essential linux-source-6.1 linux-headers
     fi
 
     K_SOURCE=$(find /usr/src/ -maxdepth 1 -name "linux-source-*.tar.*")
