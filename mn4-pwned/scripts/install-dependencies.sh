@@ -16,5 +16,5 @@ fi
 [ -f /tmp/.reboot ] && echo "reboot required to continue" && exit 1
 
 if ! command -v socat >/dev/null; then
-    sudo apt-get -y install socat
+    sudo apt-get -y install socat vim
 fi
